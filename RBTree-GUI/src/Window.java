@@ -21,11 +21,7 @@ public class Window extends JFrame {
 
         // tree position
         tree_drawer.x = getWidth() / 2;
-        tree_drawer.y = getHeight() / 6;
-        if(tree_drawer.tree.root != null) {
-            tree_drawer.y -= tree_drawer.tree.root.getMaxDepth() * 8;
-        }
-        tree_drawer.y = Math.max(tree_drawer.y, TreeDrawer.DEFAULT_NODE_DIAMETER / 2);
+        tree_drawer.y = setTreeDrawerY(tree_drawer);
 
         // set other elements positions
         int x = 10;
@@ -47,8 +43,7 @@ public class Window extends JFrame {
             try {
                 int key = Integer.parseInt(input_field.getText());
                 tree_drawer.tree.insertNode(key);
-                tree_drawer.y = getHeight() / 4 - tree_drawer.tree.root.getMaxDepth() * 8;
-                tree_drawer.y = Math.max(tree_drawer.y, TreeDrawer.DEFAULT_NODE_DIAMETER / 2);
+                tree_drawer.y = setTreeDrawerY(tree_drawer);
                 repaint();
             } catch (NumberFormatException ignored) {
             }
@@ -59,8 +54,7 @@ public class Window extends JFrame {
             try {
                 int key = Integer.parseInt(input_field.getText());
                 tree_drawer.tree.deleteKey(key);
-                tree_drawer.y = getHeight() / 4 - tree_drawer.tree.root.getMaxDepth() * 8;
-                tree_drawer.y = Math.max(tree_drawer.y, TreeDrawer.DEFAULT_NODE_DIAMETER / 2);
+                tree_drawer.y = setTreeDrawerY(tree_drawer);
                 repaint();
             } catch (NumberFormatException ignored) {
             }
@@ -80,5 +74,15 @@ public class Window extends JFrame {
         add(tree_drawer);
 
         setVisible(true);
+    }
+
+    public int setTreeDrawerY(TreeDrawer tree_drawer){
+        tree_drawer.y = getHeight() / 6;
+        if(tree_drawer.tree.root != null){
+            tree_drawer.y -= tree_drawer.tree.root.getMaxDepth() * 8;
+        }
+        tree_drawer.y = Math.max(tree_drawer.y, TreeDrawer.DEFAULT_NODE_DIAMETER / 2);
+
+        return tree_drawer.y;
     }
 }
