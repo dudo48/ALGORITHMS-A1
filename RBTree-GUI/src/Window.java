@@ -21,7 +21,10 @@ public class Window extends JFrame {
 
         // tree position
         tree_drawer.x = getWidth() / 2;
-        tree_drawer.y = getHeight() / 6 - tree_drawer.tree.root.getMaxDepth() * 8;
+        tree_drawer.y = getHeight() / 6;
+        if(tree_drawer.tree.root != null) {
+            tree_drawer.y -= tree_drawer.tree.root.getMaxDepth() * 8;
+        }
         tree_drawer.y = Math.max(tree_drawer.y, TreeDrawer.DEFAULT_NODE_DIAMETER / 2);
 
         // set other elements positions

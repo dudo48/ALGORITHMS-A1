@@ -17,7 +17,7 @@ public class Main {
 
         int n = 0;
         int node_count = (int) (Math.pow(2, n + 1) - 1);
-        constructTree(tree, 0, node_count);
+        // constructTree(tree, 0, node_count);
 
         TreeDrawer drawer = new TreeDrawer(tree);
         Window window = new Window(drawer);
